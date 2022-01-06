@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Upooad zip workflow
+name: Upload zip workflow in a new release
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
