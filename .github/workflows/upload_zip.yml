@@ -33,6 +33,7 @@ jobs:
 
     - uses: meeDamian/github-release@2.0
       with:
+        allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
         tag:  ${{ github.event.inputs.version }}
         name: Initial release
