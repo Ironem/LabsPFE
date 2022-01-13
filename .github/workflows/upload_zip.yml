@@ -34,7 +34,7 @@ jobs:
     - name: Find all directory
       id: dir
       run:  |
-        echo "::set-output name=DIR_NAME::$(find . -mindepth 1 -maxdepth 1 -type d)"
+        echo "::set-output name=DIR_NAME::$(find $(pwd) -mindepth 1 -maxdepth 1 -type d)"
         echo $(pwd)
       
                       
