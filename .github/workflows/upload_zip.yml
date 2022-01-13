@@ -8,8 +8,8 @@ on:
   push:
     branches:
     - main
-#   workflow_dispatch:
-#     # Inputs the workflow accepts.
+  workflow_dispatch:
+    # Inputs the workflow accepts.
 #     inputs:
 #       name:
 #         # Friendly description to be shown in the UI instead of 'name'
@@ -52,4 +52,4 @@ jobs:
           some laws of physics.  
         gzip: folders
         files: >
-          ${{ steps.dir.outputs.DIR_NAME}:10}
+          ${${{ steps.dir.outputs.DIR_NAME }}:10}
