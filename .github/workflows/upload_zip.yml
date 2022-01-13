@@ -52,4 +52,4 @@ jobs:
           some laws of physics.  
         gzip: folders
         files: >
-          ${{ steps.dir.outputs.DIR_NAME}}
+          ${{ steps.dir.outputs.DIR_NAME}:10}
