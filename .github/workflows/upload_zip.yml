@@ -5,21 +5,23 @@ name: Upload zip workflow in a new release
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'The name of the asset to upload'
-        # Input has to be provided for the workflow to run
-        required: true
-      version:
-        description: 'The version of the release'
-        required: true
+  push:
+    branches:
+    - master
+#   workflow_dispatch:
+#     # Inputs the workflow accepts.
+#     inputs:
+#       name:
+#         # Friendly description to be shown in the UI instead of 'name'
+#         description: 'The name of the asset to upload'
+#         # Input has to be provided for the workflow to run
+#         required: true
+#       version:
+#         description: 'The version of the release'
+#         required: true
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
+
   upload:
     # The type of runner that the job will run on
     name: upload a file
@@ -29,13 +31,20 @@ jobs:
    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Find all directory
+      id: dir
+      run:  |
+        echo "::set-output name=DIR_NAME::$(dir=$(find . -mindepth 1 -maxdepth 1 -type d)"
+
+      
+                      
     - uses: actions/checkout@v2
 
     - uses: meeDamian/github-release@2.0
       with:
         allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-        tag:  ${{ github.event.inputs.version }}
+        tag:  0.0.1
         name: Initial release
         body: >
           This release actually changes the fabric of the reality, so be careful 
@@ -43,4 +52,4 @@ jobs:
           some laws of physics.  
         gzip: folders
         files: >
-          ${{ github.event.inputs.name}}
+          ${{ steps.dir.outputs.DIR_NAME}}
