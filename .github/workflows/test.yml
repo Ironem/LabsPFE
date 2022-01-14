@@ -25,9 +25,8 @@ jobs:
     - name: Get directories
       run: |
         echo start
-        echo "${GITHUB_WORKSPACE}/"
-        echo the content of current directory
-        ls -a 
+        dir=$(find . -mindepth 1 -maxdepth 1 -type d)
+        echo "DIR=$(dir)" >> $GITHUB_ENV
        
     - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+      run: echo "${{ env.DIR }}"
