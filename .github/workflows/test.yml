@@ -20,7 +20,8 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Get directories
-      run: echo $(find ${GITHUB_WORKSPACE}/ -mindepth 1 -maxdepth 1 -type d)
-    
+      run: |
+        echo $(find ${GITHUB_WORKSPACE}/ -mindepth 1 -maxdepth 1 -type d)
+        echo $(${GITHUB_WORKSPACE}/)
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
