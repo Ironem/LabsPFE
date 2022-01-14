@@ -5,20 +5,17 @@ name: Upload zip workflow in a new release
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  push:
-    branches:
-    - main
   workflow_dispatch:
     # Inputs the workflow accepts.
-#     inputs:
-#       name:
-#         # Friendly description to be shown in the UI instead of 'name'
-#         description: 'The name of the asset to upload'
-#         # Input has to be provided for the workflow to run
-#         required: true
-#       version:
-#         description: 'The version of the release'
-#         required: true
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'The name of the asset to upload'
+        # Input has to be provided for the workflow to run
+        required: true
+      version:
+        description: 'The version of the release'
+        required: true
 
 jobs:
 
@@ -31,29 +28,16 @@ jobs:
    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Find all directory
-      id: dir
-      run:  |
-        echo "::set-output name=DIR_NAME:: buf64"
-        #echo "::set-env name=GHA_BRANCH::$(echo $GITHUB_REF | awk -F / '{print $3}')"
-        echo $(echo $GITHUB_REF | awk -F / '{print $3}')
-        echo $($(GITHUB_REF))
-        echo $($(github.workspace))
-        echo $(pwd)
-        echo $(ls)
-                      
     - uses: actions/checkout@v2
 
-#     - uses: meeDamian/github-release@2.0
-#       with:
-#         allow_override: true
-#         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-#         tag:  0.0.1
-#         name: Initial release
-#         body: >
-#           This release actually changes the fabric of the reality, so be careful 
-#           while applying, as error in database migration, can irrecoverably wipe 
-#           some laws of physics.  
-#         gzip: folders
-#         files: >
-#           ${{ steps.dir.outputs.DIR_NAME }}
+    - uses: meeDamian/github-release@2.0
+      with:
+        allow_override: true
+        token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
+        tag:  ${{INPUT_VERSION}}
+        name: Initial release
+        body: >
+          This release is all the labs of TSP labtainers
+        gzip: folders
+        files: >
+          ${{ INPUT_NAME }}
