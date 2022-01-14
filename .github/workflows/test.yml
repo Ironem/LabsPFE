@@ -22,10 +22,10 @@ jobs:
     - name: Get directories
       run: |
         echo start
-        dir=$(find ${GITHUB_WORKSPACE}/ -mindepth 1 -maxdepth 1 -type d)
+        dir=$(find "${GITHUB_WORKSPACE}/" -mindepth 1 -maxdepth 1 -type d)
         dirs=$(dir)
         echo ${dirs:10}
-        "${GITHUB_WORKSPACE}/.github/get-all-directory.sh"
-        echo ${GITHUB_WORKSPACE}/
+        "${GITHUB_WORKSPACE}/get-all-directory.sh"
+        echo "${GITHUB_WORKSPACE}/"
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
