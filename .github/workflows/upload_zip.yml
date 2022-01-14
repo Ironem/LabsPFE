@@ -5,6 +5,11 @@ name: Upload zip workflow in a new release
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
@@ -30,14 +35,21 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Get directories
+      run: |
+        dir=$(find . -mindepth 1 -maxdepth 1 -type d)
+        dirs=$(dir)
+        echo "DIR=${dirs:10}" >> $GITHUB_ENV
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - uses: meeDamian/github-release@2.0
       with:
         allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-        tag:  ${{github.event.inputs.version}}
+        tag:  ${{env.RELEASE_VERSION}}
         name: Initial release
         body: >
           This release is all the labs of TSP labtainers
         gzip: folders
         files: >
-          ${{ github.event.inputs.name }}
+          ${{ env.DIR }}
