@@ -24,7 +24,7 @@ jobs:
         echo start
         echo "${GITHUB_WORKSPACE}/"
         echo the content of current directory
-        ls -a
+        ls -a ..
        
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
