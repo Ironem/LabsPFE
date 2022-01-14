@@ -46,8 +46,8 @@ jobs:
       with:
         allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-        tag:  ${{env.RELEASE_VERSION}}
-        name: Initial release
+        tag:  ${{github.ref}}
+        name: Release ${{ github.ref }}
         body: >
           This release is all the labs of TSP labtainers
         gzip: folders
