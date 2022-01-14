@@ -6,8 +6,6 @@ name: Upload zip workflow in a new release
 # or API.
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*.*.*'
   workflow_dispatch:
@@ -46,8 +44,8 @@ jobs:
       with:
         allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-        tag:  ${{github.ref}}
-        name: Release ${{ github.ref }}
+        tag:  ${{env.RELEASE_VERSION}}
+        name: Release ${{ env.RELEASE_VERSION }}
         body: >
           This release is all the labs of TSP labtainers
         gzip: folders
