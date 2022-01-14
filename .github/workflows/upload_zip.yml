@@ -34,10 +34,10 @@ jobs:
       with:
         allow_override: true
         token: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-        tag:  ${{INPUT_VERSION}}
+        tag:  ${{github.event.inputs.version}}
         name: Initial release
         body: >
           This release is all the labs of TSP labtainers
         gzip: folders
         files: >
-          ${{ INPUT_NAME }}
+          ${{ github.event.inputs.name }}
