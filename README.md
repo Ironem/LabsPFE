@@ -3,7 +3,7 @@ This git project contains all labs for our last year project Labtainers.
 With this repository, teachers can push their lab in this project in order to be used by students during the lab.
 
 ## How to push your lab?
-In order to put your lab in release you need to push your lab with a tag.
+In order to put your lab in release you need to push your lab with a tag. A push with a tag will create automatically a new release with the tag. Although if the tag already exists it will overwrite on the existing release. 
 
 For example:
 ```sh
